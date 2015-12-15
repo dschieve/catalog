@@ -1,0 +1,38 @@
+{% extends "page.html" %}
+
+{% block title %}
+	Edit {{items.item_name}} Details
+{% endblock title %}
+
+{% block content%}
+	<h3>{{items.item_name}}</h3>
+	<br />
+	<br />
+	<form action="{{url_for('ItemEdit', item_name=items.item_name)}}" method = "POST">
+		Name: 
+		<br />
+		<input type='input' name='item_name' value='{{items.item_name}}'>
+		<br />
+		<br />
+		Description: 
+		<br />
+		<textarea name='item_description' rows='2' cols='30'>{{items.item_description}}</textarea>
+		<br />
+		<br />
+		Category:<br />
+		<select name="category">
+			{% for category in categories  %}
+				{% if items.category.category_id == category.category_id %}
+		 			<option value="{{category.category_id}}" selected>{{category.category_name}}</option>
+		 		{% else: %}
+					<option value="{{category.category_id}}">{{category.category_name}}</option>
+		 		{% endif %}
+			{% endfor  %}
+		</select>
+		<br />
+		<br />
+		<input type='submit', value='Update'>   
+	</form>
+	<br />
+	<a href='{{url_for('HomePage')}}'>Cancel</a>
+{% endblock content %}

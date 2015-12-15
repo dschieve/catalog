@@ -1,0 +1,36 @@
+{% extends "page.html" %}
+{% block title %} 
+	Catalog home
+{% endblock title %}
+{% block content%}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul class="flash">
+				{% for message in messages %}
+					<li><strong> {{ message }} </strong></li>
+				{% endfor %}
+			</ul>
+			<br />
+			<br />
+		{% endif %}
+	{% endwith %}
+	<h3>
+		Last 10 Items Added
+	</h3>
+	<br />
+	<ul class="li">
+		{% for i in items %}
+		<li >
+			<a href='{{url_for('ItemDetail',category_name=i.category.category_name,item_name=i.item_name)}}'>{{i.item_name}}</a> ({{i.category.category_name}})
+		</li>
+		{% endfor %}
+	</ul>
+	
+	<br />
+	<br />
+	
+	{% if loggedIn %}
+         <a href='{{url_for('ItemAdd')}}'>Add New Item</a>	
+    {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends "page.html" %}
+
+{% block title %} 
+	Delete {{items.item_name}}
+{% endblock title %}
+
+{% block content%}
+	<h3>Delete This Item?</h3>
+	<br />
+	<br />
+	<form action="{{url_for('ItemDelete', item_name=items.item_name)}}" method = 'post'>
+		<h4>{{items.item_name}} </h4>
+		{{items.item_description}}
+		<br /> 
+		<br />
+		<input type='hidden', name='item_id' value='{{items.item_id}}'>
+		<input type='submit', value='Delete'>   
+	</form>
+	<br />
+	<a href='{{url_for('ItemEdit',item_name=items.item_name)}}'>Cancel</a>
+
+
+{% endblock content %}

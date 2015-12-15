@@ -1,0 +1,16 @@
+{% extends "page.html" %}
+
+{% block title %} 
+	{{category.category_name}}
+{% endblock title %}
+
+{% block content %}
+		<h2>
+			{{category.category_name}} Items ({{items|length}} Items)
+		</h2>
+		<br />
+		<br />
+			{% for i in items %}
+				<p><a href='{{url_for('ItemDetail',category_name=i.category.category_name,item_name=i.item_name)}}'>{{i.item_name}}</a></p>
+			{% endfor %}
+{% endblock content %}

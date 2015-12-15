@@ -1,0 +1,35 @@
+{% extends "page.html" %}
+
+{% block title %}
+	Add New Item
+{% endblock title %}
+
+{% block content%}
+	<h3>Add New Item</h3>
+	<br />
+	<br />
+	<form action="{{url_for('ItemAdd')}}" method = "POST">
+		Name: 
+		<br />
+		<input type='input' name='item_name' value=''>
+		<br />
+		<br />
+		Description: 
+		<br />
+		<textarea name='item_description' rows='2' cols='30'></textarea>
+		<br />
+		<br />
+		Category:<br />
+		<select name="category">
+			<option value="Select" selected>Select Category</option>
+			{% for category in categories  %}
+				<option value="{{category.category_id}}">{{category.category_name}}</option>
+			{% endfor  %}
+		</select>
+		<br />
+		<br />
+		<input type='submit', value='Add New'>   
+	</form>
+	<br />
+	<a href='{{url_for('HomePage')}}'>Cancel</a>
+{% endblock content %}

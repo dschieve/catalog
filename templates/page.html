@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel=stylesheet type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>{% block title %}{% endblock %}</title>      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <br />
+            <a href='{{url_for('HomePage')}}'><img src="{{ url_for('static', filename='title.jpg')}}"/></a>
+        </div>
+        <div class="logbar">
+                {% if loggedIn %}
+                    <a href="{{url_for('gdisconnect')}}"><img src="{{ url_for('static', filename='logout.jpg')}}"/></a>
+                {% else %}
+                    <a href="{{url_for('showLogin')}}"><img src="{{ url_for('static', filename='login.jpg')}}"/></a>
+                {% endif %}
+        </div>
+        <div class="left_col">
+            <h5>Categories</h5><br />
+            <ul class="ul.menu">
+                {% for c in categories %}
+                <li> <a href='{{url_for('ItemList',category_name=c.category_name)}}'>{{c.category_name}}</a></li>
+                {% endfor %}
+             </ul>
+        </div>
+        <div class="main_col">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

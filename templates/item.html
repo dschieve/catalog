@@ -1,0 +1,21 @@
+{% extends "page.html" %}
+
+{% block title %} 
+	{{items.item_name}} Details
+{% endblock title %}
+
+{% block content %}
+		<h3>{{items.item_name}}</h3>
+		(Category: {{category.category_name}})
+		<br />
+		<br />
+		<p>Description:  {{items.item_description}}</p>
+		<br />
+		<br />
+		
+		{% if loggedIn and ownThisItem %}
+			<a href='{{url_for('ItemEdit',item_name=items.item_name)}}'>Edit</a>
+			  |  
+			<a href='{{url_for('ItemDelete',item_name=items.item_name)}}'>Delete</a>
+		{% endif%}
+{% endblock content %}
